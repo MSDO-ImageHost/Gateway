@@ -1,10 +1,5 @@
-FROM node:latest
-
-
+FROM node:12-alpine
+WORKDIR /app
 COPY . .
-
-EXPOSE 80
-EXPOSE 3000
-
-
-CMD node app.js
+RUN yarn install --production
+CMD ["node", "src/index.js"]
