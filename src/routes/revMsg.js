@@ -3,7 +3,7 @@ var response = {
     body: []
 }
 module.exports = (req, res) => {
-    amqp.connect('amqps://zdwrqrmt:sBN1bzjrboG5tUJM2VvuzNsYSxUlLV4-@roedeer.rmq.cloudamqp.com/zdwrqrmt', function(error0, connection) {
+    amqp.connect(process.env.AMQP_URI, function(error0, connection) {
         if (error0) {
             throw error0;
         }
