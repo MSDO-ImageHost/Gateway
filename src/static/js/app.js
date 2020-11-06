@@ -4,14 +4,17 @@ function App() {
         <Container>
             <Row>
                 <Col md={{ offset: 3, span: 6 }}>
-                    <AddItemForm />
+                    Account
+                    <AddItemForm service='account'/>
+                    Authentication
+                    <AddItemForm service='authentication'/>
                 </Col>
             </Row>
         </Container>
     );
 }
 
-function AddItemForm() {
+function AddItemForm(service) {
     const { Form, InputGroup, Button } = ReactBootstrap;
 
     const [message, setMessage] = React.useState('');
@@ -37,7 +40,7 @@ function AddItemForm() {
     const receiveMessage = e => {
         e.preventDefault();
         setReceiving(true);
-        fetch('/msg', {
+        fetch('/api/'.concat(JSON.stringify(service).slice(12, -2)), {
             method: 'GET',
             body: JSON.stringify(),
             headers: { 'Content-Type': 'application/json' },
