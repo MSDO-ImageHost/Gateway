@@ -1,0 +1,23 @@
+version: '3'
+
+networks:
+    public:
+      external:
+        name: ImageHost
+
+services:
+    gateway:
+        build: .
+        container_name: gateway
+        networks:
+        - public
+        ports:
+        - 8081:81
+        - 3001:3001
+        env_file: .env
+        environment:
+        - AMQP_USER=${RABBITMQ_USERNAME}
+        - AMQP_PASS=${RABBITMQ_PASSWORD}
+        - AMQP_URI=amqp://${RABBITMQ_USERNAME}:${RABBITMQ_PASSWORD}@rabbitmq:5672
+        restart: unless-stopped
+

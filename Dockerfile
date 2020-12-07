@@ -1,5 +1,5 @@
 FROM node:12-alpine
-WORKDIR /app
+WORKDIR /src
 COPY . .
-RUN yarn install --production
-CMD ["node", "src/index.js"]
+RUN npm install amqplib
+CMD ["node", "src/main.js"]
